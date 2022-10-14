@@ -22,8 +22,8 @@ data "aws_ami" "windows_2021" {
   most_recent = true
 
   filter {
-    name   = "name"
-    values = ["windows*"]
+    name   = "Name"
+    values = ["Windows*"]
   }
 
 #   filter {
