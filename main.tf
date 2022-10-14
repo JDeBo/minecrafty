@@ -26,10 +26,10 @@ data "aws_ami" "windows_2021" {
     values = ["Windows_Server*"]
   }
 
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
+#   filter {
+#     name   = "virtualization-type"
+#     values = ["hvm"]
+#   }
 
   owners = ["137112412989"] # AWS
 }
