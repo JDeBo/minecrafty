@@ -23,7 +23,7 @@ data "aws_ami" "windows_2021" {
 
   filter {
     name   = "name"
-    values = ["Windows_Server*"]
+    values = ["windows_server*"]
   }
 
 #   filter {
