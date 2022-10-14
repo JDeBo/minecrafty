@@ -1,3 +1,3 @@
-variable "vpc_id" {
-  type = string
+variable "public_key" {
+  description = "Public Key for RDP into EC2's"
 }
