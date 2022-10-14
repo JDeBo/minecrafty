@@ -13,8 +13,8 @@ provider "aws" {
 
 data "aws_vpc" "control_tower_vpc" {
   filter {
-    name = "tag:Name"
-    value = "aws-controltower-VPC"
+    name   = "tag:Name"
+    values = "aws-controltower-VPC"
   }
 }
 
