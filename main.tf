@@ -23,15 +23,15 @@ data "aws_ami" "windows_2021" {
 
   filter {
     name   = "Name"
-    values = ["Windows*"]
+    values = ["Windows_Server-2022-English-Full-Base*"]
   }
 
-#   filter {
-#     name   = "virtualization-type"
-#     values = ["hvm"]
-#   }
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
 
-  owners = ["137112412989"] # AWS
+#   owners = ["137112412989"] # AWS
 }
 
 resource "aws_instance" "lab" {
