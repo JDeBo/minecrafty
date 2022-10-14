@@ -1,12 +1,12 @@
 resource "aws_key_pair" "key_pair" {
   key_name   = "terraform_key"
-  public_key = var.rsa_public_key
+  public_key = var.public_key
 }
 
 resource "aws_security_group" "allow_rdp" {
   name        = "allow_rdp"
   description = "Allow RDP inbound traffic"
-  vpc_id      = var.vpc_id
+  vpc_id      = data.aws_vpc.control_tower_vpc.id
 
   ingress {
     description = "RDP TCP from Anywhere"

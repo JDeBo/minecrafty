@@ -1,6 +1,6 @@
 resource "aws_subnet" "this" {
-  vpc_id                  = var.vpc_id
-  cidr_block              = var.subnet_cidr
+  vpc_id                  = data.aws_vpc.control_tower_vpc.id
+  cidr_block              = cidrsubnet(data.aws_vpc.control_tower_vpc.cidr_block, 4, 20)
   availability_zone       = "us-east-2a"
   map_public_ip_on_launch = true
 
@@ -10,7 +10,7 @@ resource "aws_subnet" "this" {
 }
 
 resource "aws_route_table" "this" {
-  vpc_id = var.vpc_id
+  vpc_id = data.aws_vpc.control_tower_vpc.id
   route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.this.id
