@@ -37,7 +37,7 @@ data "aws_ami" "windows_2021" {
 resource "aws_instance" "lab" {
   ami                    = data.aws_ami.windows_2021.id
   instance_type          = var.instance_type
-  vpc_security_group_ids = data.control_tower_vpc.vpc_security_group_list
+  vpc_security_group_ids = [aws_security_group.allow_rdp.id]
   subnet_id              = aws_subnet.this.id
 
   tags = {
