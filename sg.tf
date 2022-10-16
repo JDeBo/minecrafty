@@ -1,7 +1,4 @@
-resource "aws_key_pair" "key_pair" {
-  key_name   = "terraform_key"
-  public_key = var.public_key
-}
+
 
 resource "aws_security_group" "allow_rdp" {
   name        = "allow_rdp"
