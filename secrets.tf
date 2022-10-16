@@ -4,5 +4,5 @@ resource "aws_secretsmanager_secret" "example" {
 
 resource "aws_secretsmanager_secret_version" "example" {
   secret_id     = aws_secretsmanager_secret.example.id
-  secret_string = jsonencode(aws_instance.steam.password_data)
+  secret_string = base64decode(aws_instance.steam.password_data)
 }

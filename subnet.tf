@@ -1,6 +1,6 @@
 resource "aws_subnet" "this" {
   vpc_id                  = data.aws_vpc.control_tower_vpc.id
-  cidr_block              = cidrsubnets(data.aws_vpc.control_tower_vpc.cidr_block,2,4,4,16)[3]
+  cidr_block              = cidrsubnets(data.aws_vpc.control_tower_vpc.cidr_block,2,4,4,8)[3]
   availability_zone       = "us-east-2a"
   map_public_ip_on_launch = true
 
