@@ -34,11 +34,12 @@ data "aws_ami" "windows_2021" {
 #   owners = ["137112412989"] # AWS
 }
 
-resource "aws_instance" "lab" {
+resource "aws_instance" "steam" {
   ami                    = data.aws_ami.windows_2021.id
   instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.allow_rdp.id]
   subnet_id              = aws_subnet.this.id
+  get_password_data = true
 
   tags = {
     Name = "Steam Server"
