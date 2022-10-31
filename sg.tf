@@ -1,5 +1,3 @@
-
-
 resource "aws_security_group" "allow_rdp" {
   name        = "allow_rdp"
   description = "Allow RDP inbound traffic"

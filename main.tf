@@ -18,31 +18,31 @@ data "aws_vpc" "control_tower_vpc" {
   }
 }
 
-data "aws_ami" "windows_2021" {
-  most_recent = true
+# data "aws_ami" "windows_2021" {
+#   most_recent = true
 
-  filter {
-    name   = "name"
-    values = ["Windows_Server-2022-English-Full-Base*"]
-  }
+#   filter {
+#     name   = "name"
+#     values = ["Windows_Server-2022-English-Full-Base*"]
+#   }
 
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
+#   filter {
+#     name   = "virtualization-type"
+#     values = ["hvm"]
+#   }
 
-  #   owners = ["137112412989"] # AWS
-}
+#   #   owners = ["137112412989"] # AWS
+# }
 
-resource "aws_instance" "steam" {
-  ami                    = data.aws_ami.windows_2021.id
-  instance_type          = var.instance_type
-  vpc_security_group_ids = [aws_security_group.allow_rdp.id]
-  subnet_id              = aws_subnet.this.id
-  get_password_data      = true
-  key_name               = aws_key_pair.key_pair.key_name
+# resource "aws_instance" "steam" {
+#   ami                    = data.aws_ami.windows_2021.id
+#   instance_type          = var.instance_type
+#   vpc_security_group_ids = [aws_security_group.allow_rdp.id]
+#   subnet_id              = aws_subnet.this.id
+#   get_password_data      = true
+#   key_name               = aws_key_pair.key_pair.key_name
 
-  tags = {
-    Name = "Steam Server"
-  }
-}
+#   tags = {
+#     Name = "Steam Server"
+#   }
+# }
