@@ -29,3 +29,4 @@ override.tf.json
 *tfplan*
 
 *.lock.hcl
+minecraft

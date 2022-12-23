@@ -1,13 +1,19 @@
-resource "aws_secretsmanager_secret" "example" {
-  name_prefix = "steam-key-pair"
+resource "aws_secretsmanager_secret" "minecraft" {
+  name_prefix = "minecraft-pwd"
 }
 
-# resource "aws_secretsmanager_secret_version" "example" {
-#   secret_id     = aws_secretsmanager_secret.example.id
-#   secret_string = base64decode(aws_instance.steam.password_data)
-# }
+resource "random_password" "ec2_password" {
+  length           = 16
+  special          = true
+  override_special = "!#$%&*()-_=+[]{}<>:?"
+}
+
+resource "aws_secretsmanager_secret_version" "minecraft" {
+  secret_id     = aws_secretsmanager_secret.minecraft.id
+  secret_string = random_password.ec2_password.result
+}
 
 resource "aws_key_pair" "key_pair" {
-  key_name   = "terraform_key"
+  key_name   = "minecraft_key"
   public_key = var.public_key
 }

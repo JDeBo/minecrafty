@@ -1,20 +1,27 @@
-resource "aws_security_group" "allow_rdp" {
-  name        = "allow_rdp"
-  description = "Allow RDP inbound traffic"
+resource "aws_security_group" "this" {
+  name        = "minecrafty"
+  description = "Allow Minecraft and ssh inbound traffic"
   vpc_id      = data.aws_vpc.control_tower_vpc.id
 
+  # ingress {
+  #   description = "SSH TCP from Anywhere"
+  #   from_port   = 22
+  #   to_port     = 22
+  #   protocol    = "tcp"
+  #   cidr_blocks = ["0.0.0.0/0"]
+  # }
   ingress {
-    description = "RDP TCP from Anywhere"
-    from_port   = 3389
-    to_port     = 3389
+    description = "Minecraft TCP from Anywhere"
+    from_port   = 25565
+    to_port     = 25565
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
-    description = "RDP UPD from Anywhere"
-    from_port   = 3389
-    to_port     = 3389
+    description = "Minecraft TCP from Anywhere"
+    from_port   = 25565
+    to_port     = 25565
     protocol    = "udp"
     cidr_blocks = ["0.0.0.0/0"]
   }

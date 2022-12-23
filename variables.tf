@@ -1,5 +1,3 @@
 variable "public_key" {
-  description = "Public Key for RDP into EC2's"
+  description = "Public Key for ssh into EC2's"
 }
-
-variable "instance_type" {}
