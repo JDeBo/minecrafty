@@ -34,7 +34,7 @@ ProtectControlGroups=true
 # Implies MountAPIVFS=yes
 
 # Set default memory values
-Environment="MCMINMEM=2048M" "MCMAXMEM=14336M" "SHUTDOWN_DELAY=50" "POST_SHUTDOWN_DELAY=10"
+Environment="MCMINMEM=2048M" "MCMAXMEM=14336M" "SHUTDOWN_DELAY=5" "POST_SHUTDOWN_DELAY=10"
 # Change memory values in environment file
 # EnvironmentFile=-/opt/minecraft/vault/server.conf
 
@@ -47,8 +47,11 @@ ExecStart=/bin/sh -c '/usr/bin/screen -DmS minecraft /bin/sh run.sh --nogui'
 
 ExecReload=/usr/bin/screen -p 0 -S minecraft -X eval 'stuff "reload"\\015'
 
-ExecStop=/usr/bin/screen -p 0 -S minecraft -X eval 'stuff "say Google is coming to get you. Saving map..."\\015'
-ExecStop=/usr/bin/screen -p 0 -S minecraft -X eval 'stuff "/backup start"\\015'
+ExecStop=/usr/bin/screen -p 0 -S minecraft -X eval 'stuff "say Google is coming to get you in 15. Saving map..."\\015'
+ExecStop=/bin/sh -c '/bin/sleep ${SHUTDOWN_DELAY}'
+ExecStop=/usr/bin/screen -p 0 -S minecraft -X eval 'stuff "say Google is coming to get you in 10..."\\015'
+ExecStop=/bin/sh -c '/bin/sleep ${SHUTDOWN_DELAY}'
+ExecStop=/usr/bin/screen -p 0 -S minecraft -X eval 'stuff "say Google is coming to get you in 5..."\\015'
 ExecStop=/bin/sh -c '/bin/sleep ${SHUTDOWN_DELAY}'
 ExecStop=/usr/bin/screen -p 0 -S minecraft -X eval 'stuff "save-all"\\015'
 ExecStop=/usr/bin/screen -p 0 -S minecraft -X eval 'stuff "stop"\\015'
