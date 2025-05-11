@@ -32,7 +32,7 @@ data "aws_iam_policy_document" "ec2_lambda" {
     sid       = "LambdaStartInstances"
     effect    = "Allow"
     actions   = ["ec2:StartInstances", "ec2:StopInstances"]
-    resources = [aws_instance.minecraft.arn]
+    resources = ["*"]  # Using * since spot instance ARN isn't directly available
   }
 }
 
@@ -68,7 +68,7 @@ resource "aws_lambda_function" "auto_starter" {
 
   environment {
     variables = {
-      EC2_INSTANCES = jsonencode({ minecraft = aws_instance.minecraft.id })
+      EC2_INSTANCES = jsonencode({ minecraft = aws_spot_instance_request.main.spot_instance_id })
       PSWD = random_password.lambda_password.result
     }
   }

@@ -3,13 +3,13 @@ resource "aws_security_group" "this" {
   description = "Allow Minecraft and ssh inbound traffic"
   vpc_id      = data.aws_vpc.control_tower_vpc.id
 
-  # ingress {
-  #   description = "SSH TCP from Anywhere"
-  #   from_port   = 22
-  #   to_port     = 22
-  #   protocol    = "tcp"
-  #   cidr_blocks = ["0.0.0.0/0"]
-  # }
+  ingress {
+    description = "SSH TCP from Anywhere"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
   ingress {
     description = "Minecraft TCP from Anywhere"
     from_port   = 25565
@@ -19,7 +19,7 @@ resource "aws_security_group" "this" {
   }
 
   ingress {
-    description = "Minecraft TCP from Anywhere"
+    description = "Minecraft UDP from Anywhere"
     from_port   = 25565
     to_port     = 25565
     protocol    = "udp"

@@ -28,8 +28,3 @@ data "aws_internet_gateway" "default" {
     values = [data.aws_vpc.control_tower_vpc.id]
   }
 }
-
-resource "aws_eip" "this" {
-  instance = aws_instance.minecraft.id
-  vpc      = true
-}
